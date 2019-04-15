@@ -2,18 +2,15 @@ package com.GE20070469.apdassesment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.NotificationManager;
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private int radioID;
     private int position = 0;
     private RadioButton genderSelected;
+    public static final Pattern VALID_EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    public static final Pattern VALID_PASSWORD_PATTERN = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\\\S+$).{4,}$", Pattern.CASE_INSENSITIVE);
+    public static final Pattern VALID_STRING_PATTERN = Pattern.compile("[A-Za-z]", Pattern.CASE_INSENSITIVE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
                 RegFragment newFragment = new RegFragment();// Create fragment and give it an argument specifying the article it should show
                 Bundle args = new Bundle();
                 args.putInt(RegFragment.ARG_POSITION, position);
+                args.putString( "fname", fname.getText().toString());
+                args.putString( "lname", lname.getText().toString());
+                args.putString( "email", email.getText().toString());
+                args.putString( "dob", dob.getText().toString());
+                args.putString( "gender", gender);
+                args.putString( "address", address.getText().toString());
                 newFragment.setArguments(args);
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.layout.activity_main, newFragment);// Replace whatever is in the fragment_container view with this fragment,
@@ -79,8 +85,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initialiseVars() {
-
-
         fname = findViewById(R.id.fname);
         lname = findViewById(R.id.lname);
         email = findViewById(R.id.email);
@@ -94,21 +98,12 @@ public class MainActivity extends AppCompatActivity {
         InputMethodManager inputMethodManager =(InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
-    public boolean checkString(String str) {
-        if (str == null) {
-            return false;
-        } else return str.matches("[A-Za-z]");
-    }
-
-    public static final Pattern VALID_EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-    public static final Pattern VALID_PASSWORD_PATTERN = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\\\S+$).{4,}$", Pattern.CASE_INSENSITIVE);
-    public static final Pattern VALID_STRING_PATTERN = Pattern.compile("[A-Za-z]", Pattern.CASE_INSENSITIVE);
-
-    // SimpleDateFormat class that's built to do this. More heavyweight, but more comprehensive.
+    
     public static boolean checkInput(Pattern PATTERN, String str) {// This will check for either password or email, depending on the Pattern
         Matcher matcher = PATTERN.matcher(str);
-        return matcher.find();
+        if (str == null) {
+            return false;
+        } else return matcher.find();
     }
 
 }
