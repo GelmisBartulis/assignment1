@@ -1,217 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f9f9f9"
+    android:background="@drawable/back3"
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="211dp"
-        android:layout_height="124dp"
-        android:layout_marginStart="62dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="77dp"
-        android:layout_marginRight="77dp"
-        android:contentDescription="@string/company_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.606"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/logo_color" />
-
-    <LinearLayout
-        android:id="@+id/linearContent"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="clip_horizontal|center|clip_vertical|center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/fname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
-            android:layout_marginLeft="99dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginEnd="99dp"
-            android:layout_marginRight="99dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/fname"
-            android:inputType="textPersonName"
-            android:textColor="#222"
-            android:textColorHint="#888888"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:targetApi="o" />
-
-        <EditText
-            android:id="@+id/lname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
-            android:layout_marginLeft="99dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="99dp"
-            android:layout_marginRight="99dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/lname"
-            android:inputType="textPersonName"
-            android:textColor="#222"
-            android:textColorHint="#888888"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fname" />
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
-            android:layout_marginLeft="99dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="99dp"
-            android:layout_marginRight="99dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:textColor="#222"
-            android:textColorHint="#888888"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lname" />
-
-        <EditText
-            android:id="@+id/pass1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
-            android:layout_marginLeft="99dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="99dp"
-            android:layout_marginRight="99dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="Enter password"
-            android:inputType="textPassword"
-            android:textColor="#222"
-            android:textColorHint="#888888"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email" />
-
-        <EditText
-            android:id="@+id/pass2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="97dp"
-            android:layout_marginLeft="97dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="101dp"
-            android:layout_marginRight="101dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="Confirm password"
-            android:inputType="textPassword"
-            android:textColor="#222"
-            android:textColorHint="#888888"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pass1" />
-
-        <TextView
-            android:id="@+id/dob"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="99dp"
-            android:layout_marginLeft="99dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="99dp"
-            android:layout_marginRight="99dp"
-            android:autofillHints=""
-            android:background="@drawable/round_border"
-            android:ems="10"
-            android:hint="@string/dob"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textColorHint="#bfbfbf"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:typeface="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pass2" />
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="128dp"
-            android:layout_marginLeft="128dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="133dp"
-            android:layout_marginRight="133dp"
-            android:gravity="end"
-            android:orientation='horizontal'
-            android:textAlignment="textEnd"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dob">
-
-            <RadioButton
-                android:id="@+id/radioButton5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:text="@string/male"
-                android:textAlignment="center"
-                android:textColor="#222"
-                android:textSize="18sp" />
-
-            <RadioButton
-                android:id="@+id/radioButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:text="@string/female"
-                android:textAlignment="center"
-                android:textColor="#222"
-                android:textSize="18sp" />
-
-            <RadioButton
-                android:id="@+id/radioButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:text="@string/other"
-                android:textAlignment="center"
-                android:textColor="#222"
-                android:textSize="18sp" />
-        </RadioGroup>
-    </LinearLayout>
 
     <Button
         android:id="@+id/submit"
@@ -224,13 +22,11 @@
         android:layout_marginRight="162dp"
         android:layout_marginBottom="56dp"
         android:background="@drawable/round_border_light"
-        android:text="@string/submit_text"
         android:textColor="#191919"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearContent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -29,11 +29,12 @@
         android:id="@+id/linearContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:autofillHints="no"
         android:gravity="clip_horizontal|center|clip_vertical|center_horizontal"
         android:orientation="vertical"
-        android:autofillHints="no"
         app:layout_constraintBottom_toTopOf="@+id/submit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -46,14 +47,14 @@
             android:layout_marginEnd="@dimen/marginStart"
             android:ems="10"
             android:hint="@string/first_name"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:textColor="@color/lowWhite"
             android:textColorHint="@color/colorHint"
             android:textSize="@dimen/normalSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/lname"
@@ -62,6 +63,7 @@
             android:layout_marginStart="@dimen/marginStart"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="@dimen/marginStart"
+            android:autofillHints=""
             android:ems="10"
             android:hint="@string/second_name"
             android:inputType="textPersonName"
@@ -70,8 +72,7 @@
             android:textSize="@dimen/normalSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fname"
-            android:autofillHints="" />
+            app:layout_constraintTop_toBottomOf="@+id/fname" />
 
         <EditText
             android:id="@+id/email"
@@ -80,6 +81,7 @@
             android:layout_marginStart="@dimen/marginStart"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="@dimen/marginStart"
+            android:autofillHints=""
             android:ems="10"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
@@ -88,26 +90,25 @@
             android:textSize="@dimen/normalSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lname"
-            android:autofillHints="" />
+            app:layout_constraintTop_toBottomOf="@+id/lname" />
 
-        <EditText
+        <TextView
             android:id="@+id/dob"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/marginStart"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="@dimen/marginStart"
+            android:autofillHints=""
             android:ems="10"
             android:hint="@string/date_of_birth"
-            android:inputType="textPersonName"
+            android:textAlignment="center"
             android:textColor="@color/pureWhite"
             android:textColorHint="@color/colorHint"
             android:textSize="@dimen/normalSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email"
-            android:autofillHints="" />
+            app:layout_constraintTop_toBottomOf="@+id/email" />
 
         <EditText
             android:id="@+id/address"
@@ -196,4 +197,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearContent" />
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:id="@+id/your_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
