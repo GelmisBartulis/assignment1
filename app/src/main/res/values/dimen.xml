@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="normalSize">18sp</dimen>
+    <dimen name="marginStart">100dp</dimen>
+    <dimen name="marginEnd">100dp</dimen>
+    <dimen name="radioMargin">10dp</dimen>
+
+</resources>

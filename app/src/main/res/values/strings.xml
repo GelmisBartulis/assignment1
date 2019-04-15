@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">APD Assesment</string>
+    <string name="logo">Company logo</string>
+    <string name="first_name">First name</string>
+    <string name="second_name">Second name</string>
+    <string name="email">Email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+    <string name="sign_up">Sign up</string>
+    <string name="address">Address</string>
 </resources>
