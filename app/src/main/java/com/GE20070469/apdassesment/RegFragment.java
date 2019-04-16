@@ -56,12 +56,12 @@ public class RegFragment extends Fragment implements View.OnClickListener{
         address.setLayoutParams(lparams);
         gender.setLayoutParams(lparams);
         dob.setLayoutParams(lparams);
-        fname.setText("First name: " );
-        lname.setText("Second name: " + array[1]);
-        email.setText("Email: " + array[2]);
-        dob.setText("Date of birth: " + array[3]);
-        address.setText("Address: " + array[4]);
-        gender.setText("Gender: " + array[5]);
+        fname.setText(array[0] );
+        lname.setText(array[1]);
+        email.setText(array[2]);
+        dob.setText(array[3]);
+        address.setText(array[4]);
+        gender.setText(array[5]);
         fname.setTextColor(Color.RED);
         lname.setTextColor(Color.RED);
         email.setTextColor(Color.RED);
