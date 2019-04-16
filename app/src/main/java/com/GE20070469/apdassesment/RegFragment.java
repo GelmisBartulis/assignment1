@@ -18,6 +18,7 @@ public class RegFragment extends Fragment implements View.OnClickListener{
     private View myView;// Global for further uses
     private Context context; // Getting local context
     private LinearLayout ll;
+    private String[] array;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (savedInstanceState != null)
@@ -25,15 +26,55 @@ public class RegFragment extends Fragment implements View.OnClickListener{
         myView = inflater.inflate(R.layout.activity_main, container, false); // Initialising the view the right parameters
         context = myView.getContext(); // getting context from current view
         ll = myView.findViewById(R.id.linearContent);
+        ll.setBackgroundColor(Color.DKGRAY);
+        showData();
 
-        ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        TextView tv = new TextView(context);
-        tv.setLayoutParams(lparams);
-        tv.setText("test");
-        tv.setTextColor(Color.RED);
-        Log.i("Hi", "hi");
-        ll.addView(tv);
+        assert array != null;
+        createUI();
         return myView; // Inflate the layout for this fragment
+    }
+
+    public void showData () {
+        assert getArguments() != null;
+        array = new String[]{"First name: " + getArguments().getString("fname"), "Second name: " + getArguments().getString("lname"), "Email: " + getArguments().getString("email"), "Date of birth: " + getArguments().getString("dob"), "Address: " + getArguments().getString("address"), "Gender: " + getArguments().getString("gender")};
+        for(int i = 0; i < array.length; i++) {
+            Log.i("Data" + i, "" + array[i]);
+        }
+    }
+
+    public void createUI() {
+        ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        TextView fname = new TextView(context);
+        TextView lname = new TextView(context);
+        TextView email = new TextView(context);
+        TextView address = new TextView(context);
+        TextView gender = new TextView(context);
+        TextView dob = new TextView(context);
+        fname.setLayoutParams(lparams);
+        lname.setLayoutParams(lparams);
+        email.setLayoutParams(lparams);
+        address.setLayoutParams(lparams);
+        gender.setLayoutParams(lparams);
+        dob.setLayoutParams(lparams);
+        fname.setText("First name: " );
+        lname.setText("Second name: " + array[1]);
+        email.setText("Email: " + array[2]);
+        dob.setText("Date of birth: " + array[3]);
+        address.setText("Address: " + array[4]);
+        gender.setText("Gender: " + array[5]);
+        fname.setTextColor(Color.RED);
+        lname.setTextColor(Color.RED);
+        email.setTextColor(Color.RED);
+        dob.setTextColor(Color.RED);
+        address.setTextColor(Color.RED);
+        gender.setTextColor(Color.RED);
+        ll.addView(fname);
+        ll.addView(lname);
+        ll.addView(email);
+        ll.addView(dob);
+        ll.addView(address);
+        ll.addView(gender);
+
     }
 
     @Override
