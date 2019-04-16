@@ -3,6 +3,8 @@ package com.GE20070469.apdassesment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -13,13 +15,16 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,13 +42,19 @@ public class MainActivity extends AppCompatActivity {
     public static final Pattern VALID_EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     public static final Pattern VALID_ADDRESS_PATTERN = Pattern.compile("[-0-9A-Za-z.,/ ]+", Pattern.CASE_INSENSITIVE);
     public static final Pattern VALID_STRING_PATTERN = Pattern.compile("[A-Za-z]", Pattern.CASE_INSENSITIVE);
+    private LinearLayout linearlayout;
+    private RegFragment newFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        linearlayout = findViewById(R.id.linearContent);
+        linearlayout.setBackgroundColor(Color.BLACK);
+        linearlayout.getBackground().setAlpha(0);
         initialiseVars();
+        signup.getBackground().setAlpha(255);
+
         fname.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) { if (!hasFocus) { hideKeyboard(v); } }
@@ -96,12 +107,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 retrieveData();
-//                if(checkInput(VALID_STRING_PATTERN, sFame)
-//                        && checkInput(VALID_STRING_PATTERN, sLame)
-//                        && checkInput(VALID_EMAIL_PATTERN, sEmail)
-//                        && checkInput(VALID_ADDRESS_PATTERN, sAddress)
-//                        && isAdult ) {
-                RegFragment newFragment = new RegFragment();// Create fragment and give it an argument specifying the article it should show
+                if(checkInput(VALID_STRING_PATTERN, sFame)
+                        && checkInput(VALID_STRING_PATTERN, sLame)
+                        && checkInput(VALID_EMAIL_PATTERN, sEmail)
+                        && checkInput(VALID_ADDRESS_PATTERN, sAddress)
+                        && isAdult ) {
+                    setOverlay();
+                    newFragment = new RegFragment();// Create fragment and give it an argument specifying the article it should show
                     Bundle args = new Bundle();
                     args.putInt(RegFragment.ARG_POSITION, position);
                     args.putString("fname", sFame);
@@ -112,16 +124,19 @@ public class MainActivity extends AppCompatActivity {
                     args.putString("address", sAddress);
                     newFragment.setArguments(args);
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
                     transaction.replace(R.id.your_placeholder, newFragment);// Replace whatever is in the fragment_container view with this fragment,
                     transaction.addToBackStack(null);
                     transaction.commit();
                     Log.i("Notification", "Attention: You can now proceed");
-//                } else {
-//                    Log.i("Notification", "Warning: Information provided is not correct");
-//                }
+
+                } else {
+                    Log.i("Notification", "Warning: Information provided is not correct");
+                }
             }
         });
     }
+
 
     public void initialiseVars() {
         fname = findViewById(R.id.fname);
@@ -132,6 +147,14 @@ public class MainActivity extends AppCompatActivity {
         signup = findViewById(R.id.submit);
         genderRG = findViewById(R.id.genderRG);
     }
+
+    public void setOverlay() {
+
+        linearlayout.getBackground().setAlpha(150);
+        linearlayout.getForeground().setAlpha(255);
+
+    }
+
 
     public void retrieveData() {
         sFame = fname.getText().toString();

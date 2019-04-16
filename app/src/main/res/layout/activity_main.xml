@@ -10,6 +10,7 @@
     android:focusableInTouchMode="true"
     tools:context=".MainActivity">
 
+
     <ImageView
         android:id="@+id/logo"
         android:layout_width="211dp"
@@ -27,14 +28,16 @@
 
     <LinearLayout
         android:id="@+id/linearContent"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:autofillHints="no"
+        android:background="@android:color/transparent"
+        android:foreground="@android:color/transparent"
         android:gravity="clip_horizontal|center|clip_vertical|center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/submit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -45,6 +48,7 @@
             android:layout_marginStart="@dimen/marginStart"
             android:layout_marginTop="200dp"
             android:layout_marginEnd="@dimen/marginStart"
+            android:background="@android:color/transparent"
             android:ems="10"
             android:hint="@string/first_name"
             android:importantForAutofill="no"
@@ -64,6 +68,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="@dimen/marginStart"
             android:autofillHints=""
+            android:background="@android:color/transparent"
             android:ems="10"
             android:hint="@string/second_name"
             android:inputType="textPersonName"
@@ -82,6 +87,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="@dimen/marginStart"
             android:autofillHints=""
+            android:background="@android:color/transparent"
             android:ems="10"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
@@ -92,24 +98,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lname" />
 
-        <TextView
-            android:id="@+id/dob"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginStart"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="@dimen/marginStart"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/date_of_birth"
-            android:textAlignment="center"
-            android:textColor="@color/pureWhite"
-            android:textColorHint="@color/colorHint"
-            android:textSize="@dimen/normalSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email" />
-
         <EditText
             android:id="@+id/address"
             android:layout_width="wrap_content"
@@ -118,6 +106,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="@dimen/marginStart"
             android:autofillHints=""
+            android:background="@android:color/transparent"
             android:ems="10"
             android:hint="@string/address"
             android:inputType="textPostalAddress"
@@ -129,6 +118,25 @@
             app:layout_constraintTop_toBottomOf="@+id/dob" />
 
 
+        <TextView
+            android:id="@+id/dob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginStart"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/marginStart"
+            android:autofillHints=""
+            android:background="@drawable/round_border"
+            android:ems="10"
+            android:hint="@string/date_of_birth"
+            android:textAlignment="center"
+            android:textColor="@color/pureWhite"
+            android:textColorHint="@color/lowWhite"
+            android:textSize="@dimen/normalSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
+
         <RadioGroup
             android:id="@+id/genderRG"
             android:layout_width="300dp"
@@ -136,6 +144,8 @@
             android:layout_marginStart="@dimen/marginStart"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="@dimen/marginStart"
+            android:background="@android:color/transparent"
+            android:foreground="@android:color/transparent"
             android:gravity="end"
             android:orientation='horizontal'
             android:textAlignment="textEnd"
@@ -185,28 +195,39 @@
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:layout_marginStart="@dimen/marginStart"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/marginStart"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/round_border_light"
         android:text="@string/sign_up"
         android:textColor="@color/darkGrey"
         android:textSize="@dimen/normalSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearContent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        android:id="@+id/relLay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
-
-        <FrameLayout
+        android:background="@android:color/transparent"
+        android:foreground="@android:color/transparent"
+        android:orientation="vertical"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <LinearLayout
             android:id="@+id/your_placeholder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </FrameLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:textAlignment="center">
+
+        </LinearLayout>
 
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

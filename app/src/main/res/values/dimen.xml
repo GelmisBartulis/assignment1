@@ -2,8 +2,10 @@
 <resources>
 
     <dimen name="normalSize">18sp</dimen>
+    <dimen name="titleSize">26sp</dimen>
     <dimen name="marginStart">100dp</dimen>
     <dimen name="marginEnd">100dp</dimen>
     <dimen name="radioMargin">10dp</dimen>
+    <dimen name="innerPadding">30dp</dimen>
 
 </resources>
