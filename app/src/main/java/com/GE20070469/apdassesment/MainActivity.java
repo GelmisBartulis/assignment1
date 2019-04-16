@@ -20,6 +20,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -107,12 +108,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 retrieveData();
-                if(checkInput(VALID_STRING_PATTERN, sFame)
-                        && checkInput(VALID_STRING_PATTERN, sLame)
-                        && checkInput(VALID_EMAIL_PATTERN, sEmail)
-                        && checkInput(VALID_ADDRESS_PATTERN, sAddress)
-                        && isAdult ) {
-                    setOverlay();
+                if(checkInput(VALID_STRING_PATTERN, sFame) && checkInput(VALID_STRING_PATTERN, sLame) && checkInput(VALID_EMAIL_PATTERN, sEmail) && checkInput(VALID_ADDRESS_PATTERN, sAddress) && isAdult ) {
                     newFragment = new RegFragment();// Create fragment and give it an argument specifying the article it should show
                     Bundle args = new Bundle();
                     args.putInt(RegFragment.ARG_POSITION, position);
@@ -128,16 +124,13 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.your_placeholder, newFragment);// Replace whatever is in the fragment_container view with this fragment,
                     transaction.addToBackStack(null);
                     transaction.commit();
-                    Log.i("Notification", "Attention: You can now proceed");
-
+                    Toast.makeText(getApplicationContext(), "Information correct, welcome", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.i("Notification", "Warning: Information provided is not correct");
+                    Toast.makeText(getApplicationContext(), "Warning: Information provided is not correct", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-
-
     public void initialiseVars() {
         fname = findViewById(R.id.fname);
         lname = findViewById(R.id.lname);
@@ -147,15 +140,6 @@ public class MainActivity extends AppCompatActivity {
         signup = findViewById(R.id.submit);
         genderRG = findViewById(R.id.genderRG);
     }
-
-    public void setOverlay() {
-
-        linearlayout.getBackground().setAlpha(150);
-        linearlayout.getForeground().setAlpha(255);
-
-    }
-
-
     public void retrieveData() {
         sFame = fname.getText().toString();
         sLame = lname.getText().toString();
@@ -168,33 +152,25 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.UK);
         dob.setText(sdf.format(myCalendar.getTime()));
         sDob = dob.getText().toString();
-
     }
-
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
     public static boolean checkInput(Pattern PATTERN, String str) {// This will check for either password or email, depending on the Pattern
         Matcher matcher = PATTERN.matcher(str);
         if (str == null) {
             return false;
         } else return matcher.find();
     }
-
     private int getAge(int year, int month, int day){
         Calendar dob = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
-
         dob.set(year, month, day);
-
         int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
-
         if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
             age--;
         }
-
         return age;
     }
 }

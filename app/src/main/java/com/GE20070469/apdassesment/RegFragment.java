@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -59,8 +60,9 @@ public class RegFragment extends Fragment implements View.OnClickListener{
     }
     public void createUI() {
         ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ViewGroup.LayoutParams imageParams = new ViewGroup.LayoutParams( 100, 100);
 
-        ImageButton ib = new ImageButton(context);
+        Button ib = new Button(context);
         TextView title = new TextView(context);
         TextView fname = new TextView(context);
         TextView lname = new TextView(context);
@@ -69,7 +71,7 @@ public class RegFragment extends Fragment implements View.OnClickListener{
         TextView gender = new TextView(context);
         TextView dob = new TextView(context);
 
-        ib.setLayoutParams(lparams);
+        ib.setLayoutParams(imageParams);
         title.setLayoutParams(lparams);
         fname.setLayoutParams(lparams);
         lname.setLayoutParams(lparams);
@@ -78,7 +80,7 @@ public class RegFragment extends Fragment implements View.OnClickListener{
         gender.setLayoutParams(lparams);
         dob.setLayoutParams(lparams);
 
-        ib.setImageResource(R.drawable.close);
+        ib.setBackgroundResource(R.drawable.close);
         ib.setOnClickListener(this);
 
         title.setText(R.string.details_title);
