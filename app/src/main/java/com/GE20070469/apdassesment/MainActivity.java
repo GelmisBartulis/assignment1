@@ -3,8 +3,6 @@ package com.GE20070469.apdassesment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -14,18 +12,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,11 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         linearlayout = findViewById(R.id.linearContent);
-        linearlayout.setBackgroundColor(Color.BLACK);
-        linearlayout.getBackground().setAlpha(0);
         initialiseVars();
-        signup.getBackground().setAlpha(255);
-
         fname.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) { if (!hasFocus) { hideKeyboard(v); } }
@@ -108,7 +98,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 retrieveData();
-                if(checkInput(VALID_STRING_PATTERN, sFame) && checkInput(VALID_STRING_PATTERN, sLame) && checkInput(VALID_EMAIL_PATTERN, sEmail) && checkInput(VALID_ADDRESS_PATTERN, sAddress) && isAdult ) {
+
+                if(!checkInput(VALID_STRING_PATTERN, sFame ) || !checkInput(VALID_STRING_PATTERN, sLame) ) {
+                    Toast.makeText(getApplicationContext(), "Only letters allowed", Toast.LENGTH_SHORT).show();
+                    fname.setBackgroundColor(R.color.error);
+                    lname.setBackgroundColor(R.color.error);
+                } else if (!checkInput(VALID_EMAIL_PATTERN, sEmail)) {
+                    Toast.makeText(getApplicationContext(), "Please the following format: user@example.com", Toast.LENGTH_LONG).show();
+                    email.setBackgroundColor(R.color.error);
+                } else if (!checkInput(VALID_ADDRESS_PATTERN, sAddress)) {
+                    Toast.makeText(getApplicationContext(), "Address is not correct", Toast.LENGTH_SHORT).show();
+                    address.setBackgroundColor(R.color.error);
+                } else if (!isAdult) {
+                    Toast.makeText(getApplicationContext(), "You have to be over 18", Toast.LENGTH_SHORT).show();
+                    dob.setBackgroundColor(R.color.error);
+                } else if (checkInput(VALID_STRING_PATTERN, sFame) && checkInput(VALID_STRING_PATTERN, sLame) && checkInput(VALID_EMAIL_PATTERN, sEmail) && checkInput(VALID_ADDRESS_PATTERN, sAddress) && isAdult) {
                     newFragment = new RegFragment();// Create fragment and give it an argument specifying the article it should show
                     Bundle args = new Bundle();
                     args.putInt(RegFragment.ARG_POSITION, position);
@@ -146,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
         sEmail = email.getText().toString();
         sAddress = address.getText().toString();
     }
-
     private void updateLabel() {   // Formatting the given date to UK format
         String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.UK);

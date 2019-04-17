@@ -1,29 +1,18 @@
 package com.GE20070469.apdassesment;
 
-
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.DimenRes;
-import android.support.annotation.Dimension;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.util.Objects;
-
 
 public class RegFragment extends Fragment implements View.OnClickListener{
     final static String ARG_POSITION = "position"; // Positioning for the fragments
@@ -37,17 +26,11 @@ public class RegFragment extends Fragment implements View.OnClickListener{
         if (savedInstanceState != null)
             mCurrentPosition = savedInstanceState.getInt(ARG_POSITION);
         myView = inflater.inflate(R.layout.activity_main, container, false); // Initialising the view the right parameters
-        myView.setFocusable(true);
-        myView.requestFocus();
-
         context = myView.getContext(); // getting context from current view
         linearLay = myView.findViewById(R.id.your_placeholder);
         linearLay.setBackground(ContextCompat.getDrawable(context, R.drawable.round_light_full));
-        Log.i("Focus", "no");
-
         linearLay.setPadding(60, 60, 60, 20);
         showData();
-        assert array != null;
         createUI();
         return myView; // Inflate the layout for this fragment
     }
@@ -61,7 +44,6 @@ public class RegFragment extends Fragment implements View.OnClickListener{
     public void createUI() {
         ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ViewGroup.LayoutParams imageParams = new ViewGroup.LayoutParams( 100, 100);
-
         Button ib = new Button(context);
         TextView title = new TextView(context);
         TextView fname = new TextView(context);
