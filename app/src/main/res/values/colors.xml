@@ -7,5 +7,6 @@
     <color name="pureWhite">#ffffff</color>
     <color name="lowWhite">#d4d4d4</color>
     <color name="darkGrey">#191919</color>
-    <color name="error">#ff6666</color>
+    <color name="error">#8cff6666</color>
+    <color name="good">#8c85e085</color>
 </resources>

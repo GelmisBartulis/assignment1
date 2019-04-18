@@ -1,12 +1,14 @@
 package com.GE20070469.apdassesment;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +45,9 @@ public class RegFragment extends Fragment implements View.OnClickListener{
     }
     public void createUI() {
         ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        ViewGroup.LayoutParams imageParams = new ViewGroup.LayoutParams( 100, 100);
+        LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams( 100, 100);
+        imageParams.setLayoutDirection(Gravity.END|Gravity.CENTER_VERTICAL);
+
         Button ib = new Button(context);
         TextView title = new TextView(context);
         TextView fname = new TextView(context);
@@ -72,13 +76,14 @@ public class RegFragment extends Fragment implements View.OnClickListener{
         dob.setText(array[3]);
         address.setText(array[4]);
         gender.setText(array[5]);
+        ContextCompat.getColor(context, R.color.error);
 
-        fname.setTextColor(Color.RED);
-        lname.setTextColor(Color.RED);
-        email.setTextColor(Color.RED);
-        dob.setTextColor(Color.RED);
-        address.setTextColor(Color.RED);
-        gender.setTextColor(Color.RED);
+        fname.setTextColor(ContextCompat.getColor(context, R.color.error));
+        lname.setTextColor( ContextCompat.getColor(context, R.color.error));
+        email.setTextColor(ContextCompat.getColor(context, R.color.error));
+        dob.setTextColor(ContextCompat.getColor(context, R.color.error));
+        address.setTextColor(ContextCompat.getColor(context, R.color.error));
+        gender.setTextColor(ContextCompat.getColor(context, R.color.error));
 
         title.setTextSize(40);
         title.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);

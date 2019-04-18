@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
     public static final Pattern VALID_EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     public static final Pattern VALID_ADDRESS_PATTERN = Pattern.compile("[-0-9A-Za-z.,/ ]+", Pattern.CASE_INSENSITIVE);
-    public static final Pattern VALID_STRING_PATTERN = Pattern.compile("[A-Za-z]", Pattern.CASE_INSENSITIVE);
+    public static final Pattern VALID_STRING_PATTERN = Pattern.compile("^[a-zA-Z]+$", Pattern.CASE_INSENSITIVE);
     private LinearLayout linearlayout;
     private RegFragment newFragment;
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         linearlayout = findViewById(R.id.linearContent);
         initialiseVars();
+
         fname.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) { if (!hasFocus) { hideKeyboard(v); } }
@@ -85,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
         dob.setOnClickListener(new View.OnClickListener() { // When user clicks to pick their DOB a calendar will pop up - asking for input
             @Override
             public void onClick(View v) {
@@ -98,21 +101,37 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 retrieveData();
-
-                if(!checkInput(VALID_STRING_PATTERN, sFame ) || !checkInput(VALID_STRING_PATTERN, sLame) ) {
+                if(!checkInput(VALID_STRING_PATTERN, sFame )) {
                     Toast.makeText(getApplicationContext(), "Only letters allowed", Toast.LENGTH_SHORT).show();
-                    fname.setBackgroundColor(R.color.error);
-                    lname.setBackgroundColor(R.color.error);
-                } else if (!checkInput(VALID_EMAIL_PATTERN, sEmail)) {
+                    fname.setBackgroundColor( ContextCompat.getColor(getApplicationContext(), R.color.error) );
+                } else {
+                    fname.setBackgroundColor( ContextCompat.getColor(getApplicationContext(), R.color.good) );
+                }
+                if(!checkInput(VALID_STRING_PATTERN, sLame) ) {
+                    Toast.makeText(getApplicationContext(), "Only letters allowed", Toast.LENGTH_SHORT).show();
+                    lname.setBackgroundColor( ContextCompat.getColor(getApplicationContext(), R.color.error) );
+                }else {
+                    lname.setBackgroundColor( ContextCompat.getColor(getApplicationContext(), R.color.good) );
+                }
+                if (!checkInput(VALID_EMAIL_PATTERN, sEmail)) {
                     Toast.makeText(getApplicationContext(), "Please the following format: user@example.com", Toast.LENGTH_LONG).show();
-                    email.setBackgroundColor(R.color.error);
-                } else if (!checkInput(VALID_ADDRESS_PATTERN, sAddress)) {
+                    email.setBackgroundColor( ContextCompat.getColor(getApplicationContext(), R.color.error) );
+                } else {
+                    email.setBackgroundColor( ContextCompat.getColor(getApplicationContext(), R.color.good) );
+                }
+                if (!checkInput(VALID_ADDRESS_PATTERN, sAddress)) {
                     Toast.makeText(getApplicationContext(), "Address is not correct", Toast.LENGTH_SHORT).show();
-                    address.setBackgroundColor(R.color.error);
-                } else if (!isAdult) {
+                    address.setBackgroundColor( ContextCompat.getColor(getApplicationContext(), R.color.error) );
+                }else {
+                    address.setBackgroundColor( ContextCompat.getColor(getApplicationContext(), R.color.good) );
+                }
+                if (!isAdult) {
                     Toast.makeText(getApplicationContext(), "You have to be over 18", Toast.LENGTH_SHORT).show();
-                    dob.setBackgroundColor(R.color.error);
-                } else if (checkInput(VALID_STRING_PATTERN, sFame) && checkInput(VALID_STRING_PATTERN, sLame) && checkInput(VALID_EMAIL_PATTERN, sEmail) && checkInput(VALID_ADDRESS_PATTERN, sAddress) && isAdult) {
+                    dob.setBackgroundColor( ContextCompat.getColor(getApplicationContext(), R.color.error) );
+                }else {
+                    dob.setBackgroundColor( ContextCompat.getColor(getApplicationContext(), R.color.good) );
+                }
+                if (checkInput(VALID_STRING_PATTERN, sFame) && checkInput(VALID_STRING_PATTERN, sLame) && checkInput(VALID_EMAIL_PATTERN, sEmail) && checkInput(VALID_ADDRESS_PATTERN, sAddress) && isAdult) {
                     newFragment = new RegFragment();// Create fragment and give it an argument specifying the article it should show
                     Bundle args = new Bundle();
                     args.putInt(RegFragment.ARG_POSITION, position);
